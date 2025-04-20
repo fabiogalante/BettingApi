@@ -1,4 +1,3 @@
-using BettingApi.Application.Common;
 using BettingApi.Application.Common.Interfaces;
 using BettingApi.Application.Customers.Commands;
 using BettingApi.Application.Customers.Query;
@@ -12,7 +11,7 @@ public static class CustomersEndpoints
 {
     public static void MapCustomersEndpoints(this WebApplication app)
     {
-        app.MapPost("/api/customers", async ([FromBody] CreateCustomerCommand command, [FromServices] IMediator mediator) =>
+        app.MapPost("/api/customers", async ([FromBody] CreateCustomerCommand command, IMediator mediator) =>
         {
             var result = await mediator.SendCommandAsync<CreateCustomerCommand, ErrorOr<Guid>>(command);
             return Results.Created($"/api/customers", result);

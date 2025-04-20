@@ -9,7 +9,7 @@ public class LoggingBehavior<TInput, TOutput>(ILogger<LoggingBehavior<TInput, TO
 {
     public async Task<TOutput> HandleAsync(TInput input, Func<Task<TOutput>> next, CancellationToken cancellationToken)
     {
-        logger.LogInformation("[START] Handle request = {Request} - Response = {Response} ", typeof(TInput)..Name, typeof(TOutput).Name);
+        logger.LogInformation("[START] Handle request = {Request} - Response = {Response} ", typeof(TInput).Name, typeof(TOutput).Name);
         
         var timer = new Stopwatch();
         timer.Start();

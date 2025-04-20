@@ -23,7 +23,8 @@ public static class DependencyInjection
         services.AddScoped<IRepository<Bet>, Repository<Bet>>();
         
         services.AddScoped<IUnitOfWork, UnitOfWork>();
-
+        
+     
         return services;
     }
 }

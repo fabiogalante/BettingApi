@@ -1,6 +1,5 @@
 // CreateCustomerCommandHandler.cs
 
-using BettingApi.Application.Common;
 using ErrorOr;
 using BettingApi.Core.Customers;
 using BettingApi.Core.Common.Interfaces;
@@ -11,11 +10,9 @@ namespace BettingApi.Application.Customers.Commands;
 public class CreateCustomerCommandHandler(
     IRepository<Customer> customerRepository,
     IUnitOfWork unitOfWork)
-    : ICommandHandler<CreateCustomerCommand, Guid>
+    : ICommandHandler<CreateCustomerCommand, ErrorOr<Guid>>
 {
-    public async Task<Guid> HandleAsync(
-        CreateCustomerCommand command, 
-        CancellationToken cancellationToken)
+    public async Task<ErrorOr<Guid>> HandleAsync(CreateCustomerCommand command, CancellationToken cancellationToken)
     {
         var customer = new Customer
         {
